@@ -8,13 +8,14 @@ use App\Model\Weather;
 class WeatherService
 {
     /**
+     * @param \DateTime $day
      * @return Weather
      * @throws \Exception
      */
-    public function getToday(): Weather
+    public function getDay(\DateTime $day): Weather
     {
         $today = $this->load(new NullWeather());
-        $today->setDate(new \DateTime());
+        $today->setDate($day);
 
         return $today;
     }

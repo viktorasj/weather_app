@@ -2,19 +2,18 @@
 
 namespace App\Controller;
 
-use App\GoogleAPI\WeatherService;
+use App\GoogleApi\WeatherService;
 use App\Model\NullWeather;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class WeatherController extends AbstractController
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-
             $fromGoogle = new WeatherService();
-            $weather = $fromGoogle->getToday();
-
+            $weather = $fromGoogle->getDay(new \DateTime($request->query->get('day')));
         } catch (\Exception $exp) {
             $weather = new NullWeather();
         }

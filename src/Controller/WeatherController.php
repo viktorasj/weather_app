@@ -5,15 +5,14 @@ namespace App\Controller;
 use App\GoogleApi\WeatherService;
 use App\Model\NullWeather;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
 class WeatherController extends AbstractController
 {
-    public function index(Request $request)
+    public function index($day)
     {
         try {
             $fromGoogle = new WeatherService();
-            $weather = $fromGoogle->getDay(new \DateTime($request->query->get('day')));
+            $weather = $fromGoogle->getDay(new \DateTime($day));
         } catch (\Exception $exp) {
             $weather = new NullWeather();
         }

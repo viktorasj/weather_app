@@ -1,17 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vic
- * Date: 18.12.12
- * Time: 02.13
- */
+
 
 namespace App\Service;
 
 
-class AgeCalculator
+use App\Services\NumberFormatterInterface;
+
+class AgeCalculator implements NumberFormatterInterface
 {
-    public function calculateAge (\DateTime $birthdate)
+    public function calculateAge (\DateTime $birthdate): \DateTime
     {
         $today = new \DateTime;
         $age = $today->diff($birthdate)->y;

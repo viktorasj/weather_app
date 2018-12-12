@@ -30,13 +30,19 @@ class AgeCalculatorCommand extends ContainerAwareCommand
 
 
         if ($birthdate) {
-            $io->note(sprintf('You passed an argument: %s', $manager->calcAge(new \DateTIme($birthdate))));
+            $age = $manager->calcAge(new \DateTIme($birthdate));
+            $io->note(sprintf('I\'m '.$age.' years old'));
         }
 
         if ($input->getOption('adult')) {
-            // ...
+            $adultOrNot = $manager->isAdult();
+            $msg = 'Am I an adult? -----';
+            if($adultOrNot){
+                $io->success($msg.' Yes!');
+            }
+            else {
+                $io->warning($msg.' No!');
+            }
         }
-
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
     }
 }

@@ -1,0 +1,7 @@
+services:
+  app.service.age_calculator:
+    public: true
+    class: App\Service\AgeCalculator
+
+
+

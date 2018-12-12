@@ -3,9 +3,9 @@
 
 namespace App\Service;
 
+use App\Service\AgeCalculator;
+use App\Service\CheckAdult;
 
-use phpDocumentor\Reflection\Types\Boolean;
-use phpDocumentor\Reflection\Types\Integer;
 
 class AppServiceManager
 {
@@ -13,7 +13,7 @@ class AppServiceManager
     private $checkAdult;
     private $age;
 
-    public function __construct(AgeCalculatorInterface $ageCalculator, CheckAdultInterface $checkAdult)
+    public function __construct(AgeCalculator $ageCalculator, CheckAdult $checkAdult)
     {
         $this->ageCalculator = $ageCalculator;
         $this->checkAdult = $checkAdult;
@@ -28,7 +28,7 @@ class AppServiceManager
 
     public function isAdult (): bool
     {
-        $isAdult = $this->checkAdult($this->age);
+        $isAdult = $this->checkAdult->checkAdult($this->age);
 
         return $isAdult;
     }

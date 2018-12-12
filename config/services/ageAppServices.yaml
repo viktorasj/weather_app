@@ -1,7 +1,13 @@
 services:
-  app.service.age_calculator:
+  app.service.manager:
     public: true
+    class: App\Service\AppServiceManager
+    arguments:
+      - "@app.service.age_calculator"
+      - "@app.service.check_adult"
+
+  app.service.age_calculator:
     class: App\Service\AgeCalculator
 
-
-
+  app.service.check_adult:
+    class: App\Service\CheckAdult

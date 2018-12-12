@@ -26,11 +26,11 @@ class AgeCalculatorCommand extends ContainerAwareCommand
     {
         $io = new SymfonyStyle($input, $output);
         $birthdate = $input->getArgument('birthdate');
-        $test = $this->getContainer()->get("app.service.age_calculator");
+        $manager = $this->getContainer()->get("app.service.manager");
 
 
         if ($birthdate) {
-            $io->note(sprintf('You passed an argument: %s', $test-> calculateAge(new \DateTime ($birthdate))));
+            $io->note(sprintf('You passed an argument: %s', $manager->calcAge(new \DateTIme($birthdate))));
         }
 
         if ($input->getOption('adult')) {

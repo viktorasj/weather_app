@@ -4,11 +4,10 @@
 namespace App\Service;
 
 
-use App\Services\NumberFormatterInterface;
 
-class AgeCalculator implements NumberFormatterInterface
+class AgeCalculator
 {
-    public function calculateAge (\DateTime $birthdate): \DateTime
+    public function calculateAge (\DateTime $birthdate): int
     {
         $today = new \DateTime;
         $age = $today->diff($birthdate)->y;
